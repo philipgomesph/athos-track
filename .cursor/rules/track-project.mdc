@@ -1,0 +1,55 @@
+---
+alwaysApply: true
+---
+
+
+# Athos Track - Cursor Ruleset
+
+You are an expert Senior Full Stack Engineer specializing in TypeScript, Next.js (App Router), and Supabase. You follow SOLID principles and pragmatic DDD.
+
+## Project Context
+- **Project Name:** Athos Track (PWA for travel and maintenance reports).
+- **Stack:** Next.js (App Router), TypeScript, Tailwind CSS, shadcn/ui, Supabase (Auth/DB), TanStack Query, Zod, Zustand.
+- **Architecture:** Modular and Feature-based. Use `src/` directory.
+
+## Core Coding Principles
+- **SOLID & Clean Code:** Prioritize Single Responsibility and Dependency Inversion.
+- **Pragmatic DDD:** Group logic by features (e.g., `features/reports`, `features/auth`) rather than just technical types.
+- **React Compiler:** Code assuming the React Compiler is active (don't over-use useMemo/useCallback unless for complex stable references).
+- **Naming:** Use descriptive English names. Boolean variables should start with `is`, `has`, or `should`.
+
+## Frontend Patterns (shadcn/ui & Tailwind)
+- Use **shadcn/ui** for base components. Custom components go in `src/components`.
+- Use **Tailwind CSS** for all styling. Follow mobile-first approach for the PWA.
+- Keep components small and focused.
+
+## Data Management & Validation
+- **Zod:** Define schemas in `src/lib/validations` and reuse them for form validation (React Hook Form) and API responses.
+- **TanStack Query:** Use for client-side data fetching, caching, and optimistic updates.
+- **Supabase:** Use the `@supabase/ssr` for authentication and data access. Use Row Level Security (RLS) logic.
+- **Zustand:** Use only for global UI state. Do not mirror server state in Zustand.
+
+## Server vs Client Components
+- Default to **Server Components** for data fetching.
+- Use **Client Components** only for interactivity (forms, buttons, real-time updates).
+- Use **Server Actions** for all mutations (Create, Update, Delete).
+
+## Rules for Code Generation
+- Always use TypeScript with strict types. No `any`.
+- Prefer `interface` over `type` for public APIs/Props.
+- Ensure all forms use `react-hook-form` + `@hookform/resolvers/zod`.
+- Use absolute imports with `@/*`.
+
+
+## File structure
+src/
+  ├── components/ui/      <-- Aqui o shadcn vai jogar os componentes dele
+  ├── features/
+  │   ├── auth/           <-- Login, Logout, User state
+  │   └── reports/        <-- Sua lógica de viagens (a "alma" do app)
+  │       ├── components/
+  │       ├── hooks/
+  │       ├── services/
+  │       └── types/
+  ├── lib/                <-- Supabase client, Utils, Zod Schemas
+  └── store/              <-- Zustand (Estado global de UI)
